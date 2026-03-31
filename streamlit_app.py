@@ -543,13 +543,24 @@ if run:
         </div>
         """, unsafe_allow_html=True)
 
-        # 데스크 총평
-        st.markdown(f"""
-        <div class="summary-box">
-            <div class="s-label">💡 데스크 총평</div>
-            <div class="s-text">{data.get('summary', '')}</div>
-        </div>
-        """, unsafe_allow_html=True)
+        # 섹션 E: 선동 어휘 필터 (D 바로 아래)
+        st.markdown('<div class="section-title" style="margin-top:24px;">E. 선동 어휘 필터</div>', unsafe_allow_html=True)
+        words = data.get("words", [])
+        if words:
+            df = pd.DataFrame(words)
+            df.columns = ['자극 어휘', '심리 효과', '대체어'] if len(df.columns) == 3 else df.columns
+            st.dataframe(
+                df,
+                use_container_width=True,
+                hide_index=True,
+                column_config={
+                    "자극 어휘": st.column_config.TextColumn(width="small"),
+                    "심리 효과": st.column_config.TextColumn(width="medium"),
+                    "대체어": st.column_config.TextColumn(width="small"),
+                }
+            )
+        else:
+            st.markdown('<div style="color:var(--muted); font-size:13px;">추출된 선동 어휘 없음</div>', unsafe_allow_html=True)
 
     with right:
         # 섹션 C: 방사형 차트
@@ -627,25 +638,13 @@ if run:
             </div>
             """, unsafe_allow_html=True)
 
-    # ── 섹션 E: 선동 어휘 필터 (전체 너비)
-    st.markdown('<hr class="divider">', unsafe_allow_html=True)
-    st.markdown('<div class="section-title">E. 선동 어휘 필터</div>', unsafe_allow_html=True)
-    words = data.get("words", [])
-    if words:
-        df = pd.DataFrame(words)
-        df.columns = ['자극 어휘', '심리 효과', '대체어'] if len(df.columns) == 3 else df.columns
-        st.dataframe(
-            df,
-            use_container_width=True,
-            hide_index=True,
-            column_config={
-                "자극 어휘": st.column_config.TextColumn(width="small"),
-                "심리 효과": st.column_config.TextColumn(width="medium"),
-                "대체어": st.column_config.TextColumn(width="small"),
-            }
-        )
-    else:
-        st.markdown('<div style="color:var(--muted); font-size:13px;">추출된 선동 어휘 없음</div>', unsafe_allow_html=True)
+        # 데스크 총평 (오른쪽 하단)
+        st.markdown(f"""
+        <div class="summary-box" style="margin-top:20px;">
+            <div class="s-label">💡 데스크 총평</div>
+            <div class="s-text">{data.get('summary', '')}</div>
+        </div>
+        """, unsafe_allow_html=True)
 
     # ── 하단 주석
     st.markdown('<hr class="divider">', unsafe_allow_html=True)
