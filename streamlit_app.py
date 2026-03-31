@@ -402,8 +402,18 @@ with st.sidebar:
 
 # ── 4. 메인 헤더 ────────────────────────────────────────────────────────────────
 st.markdown("""
-<div class="hero-title">뉴스 심리<br><em>프레이밍 분석기</em></div>
-<div class="hero-sub">News Psychological Framing Analyzer · Media Bias Detection System</div>
+<div style="padding: 32px 0 24px;">
+    <div style="font-family:'DM Serif Display',serif; font-size:clamp(36px,5vw,64px);
+                color:#ffffff; line-height:1.05; letter-spacing:-0.02em;">
+        뉴스 심리 프레이밍 분석기
+    </div>
+    <div style="font-family:'DM Serif Display',serif; font-size:clamp(18px,2.5vw,32px);
+                color:#6b7280; line-height:1.2; letter-spacing:-0.01em; margin-top:8px;">
+        News Psychological Framing Analyzer
+    </div>
+    <div style="width:60px; height:3px; background:var(--accent);
+                border-radius:2px; margin-top:20px;"></div>
+</div>
 """, unsafe_allow_html=True)
 
 st.markdown("""
