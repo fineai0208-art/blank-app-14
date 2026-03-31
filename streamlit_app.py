@@ -404,14 +404,14 @@ with st.sidebar:
 st.markdown("""
 <div style="padding: 32px 0 24px;">
     <div style="font-family:'DM Serif Display',serif; font-size:clamp(36px,5vw,64px);
-                color:#ffffff; line-height:1.05; letter-spacing:-0.02em;">
+                color:#e84040; line-height:1.05; letter-spacing:-0.02em;">
         뉴스 심리 프레이밍 분석기
     </div>
     <div style="font-family:'DM Serif Display',serif; font-size:clamp(18px,2.5vw,32px);
                 color:#6b7280; line-height:1.2; letter-spacing:-0.01em; margin-top:8px;">
         News Psychological Framing Analyzer
     </div>
-    <div style="width:60px; height:3px; background:var(--accent);
+    <div style="width:60px; height:3px; background:#e84040;
                 border-radius:2px; margin-top:20px;"></div>
 </div>
 """, unsafe_allow_html=True)
@@ -627,24 +627,25 @@ if run:
             </div>
             """, unsafe_allow_html=True)
 
-        # 섹션 E: 선동 어휘 테이블
-        st.markdown('<div class="section-title" style="margin-top:20px;">E. 선동 어휘 필터</div>', unsafe_allow_html=True)
-        words = data.get("words", [])
-        if words:
-            df = pd.DataFrame(words)
-            df.columns = ['자극 어휘', '심리 효과', '대체어'] if len(df.columns) == 3 else df.columns
-            st.dataframe(
-                df,
-                use_container_width=True,
-                hide_index=True,
-                column_config={
-                    "자극 어휘": st.column_config.TextColumn(width="small"),
-                    "심리 효과": st.column_config.TextColumn(width="medium"),
-                    "대체어": st.column_config.TextColumn(width="small"),
-                }
-            )
-        else:
-            st.markdown('<div style="color:var(--muted); font-size:13px;">추출된 선동 어휘 없음</div>', unsafe_allow_html=True)
+    # ── 섹션 E: 선동 어휘 필터 (전체 너비)
+    st.markdown('<hr class="divider">', unsafe_allow_html=True)
+    st.markdown('<div class="section-title">E. 선동 어휘 필터</div>', unsafe_allow_html=True)
+    words = data.get("words", [])
+    if words:
+        df = pd.DataFrame(words)
+        df.columns = ['자극 어휘', '심리 효과', '대체어'] if len(df.columns) == 3 else df.columns
+        st.dataframe(
+            df,
+            use_container_width=True,
+            hide_index=True,
+            column_config={
+                "자극 어휘": st.column_config.TextColumn(width="small"),
+                "심리 효과": st.column_config.TextColumn(width="medium"),
+                "대체어": st.column_config.TextColumn(width="small"),
+            }
+        )
+    else:
+        st.markdown('<div style="color:var(--muted); font-size:13px;">추출된 선동 어휘 없음</div>', unsafe_allow_html=True)
 
     # ── 하단 주석
     st.markdown('<hr class="divider">', unsafe_allow_html=True)
