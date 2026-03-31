@@ -553,6 +553,7 @@ if run:
                 df,
                 use_container_width=True,
                 hide_index=True,
+                height=250,
                 column_config={
                     "자극 어휘": st.column_config.TextColumn(width="small"),
                     "심리 효과": st.column_config.TextColumn(width="medium"),
