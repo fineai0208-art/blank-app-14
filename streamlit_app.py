@@ -265,7 +265,7 @@ def analyze_article(text: str, api_key: str) -> tuple[dict | None, str | None]:
     try:
         import google.generativeai as genai
         genai.configure(api_key=api_key)
-        model = genai.GenerativeModel('gemini-1.5-flash')
+        model = genai.GenerativeModel('gemini-2.0-flash')
 
         prompt = f"""당신은 30년 경력의 미디어 심리학자이자 전직 보도국 데스크입니다.
 아래 뉴스 기사가 독자의 심리를 어떻게 조작하고 어떤 프레임을 씌웠는지 냉정하게 분석하세요.
